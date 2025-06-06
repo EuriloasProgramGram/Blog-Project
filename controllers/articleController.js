@@ -24,7 +24,7 @@ module.exports.addArticle = async function(req, res) {
 
 module.exports.displayArticle = async function(req, res) {
     const article = await Article.findByPk(req.params.articleId, {
-        include: ['author']
+        include: ['author', 'comments']
     });
     res.render('articles/view', {article});
 };
