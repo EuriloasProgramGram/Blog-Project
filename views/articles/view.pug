@@ -5,6 +5,7 @@ block content
         div.content
             div.article-header-row
                 h1.article-title=article.title
+                a.button(href=`/article/${article.id}/edit`) Edit
             p.published-on Published
                 strong.emphasize #{article.friendlyPublishedDate}
                 | by
