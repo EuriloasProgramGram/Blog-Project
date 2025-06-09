@@ -1,4 +1,4 @@
-const {Article, Comment} = require('../models');
+const {Article, Comment, Reply} = require('../models');
 
 module.exports.renderAddForm = function(req, res) {
     const article = {
@@ -29,7 +29,12 @@ module.exports.displayArticle = async function(req, res) {
             {
                 model: Comment,
                 as: 'comments',
-                required: false
+                required: false,
+                include: [{
+                    model: Reply,
+                    as: 'replies',
+                    required:false
+                }]
             }
         ],
         order: [

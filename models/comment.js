@@ -12,6 +12,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Comment.hasMany(models.Reply,{
+        as: 'replies',
+        foreignKey: 'parent_comment_id'
+      })
     }
   }
   Comment.init({
@@ -32,7 +36,12 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Comment',
     timestamps: false,
-    tableName: 'blog_comments'
+    tableName: 'blog_comments',
+    defaultScope:{
+      where: {
+        parent_comment_id: null
+      }
+    }
   });
   return Comment;
 };
