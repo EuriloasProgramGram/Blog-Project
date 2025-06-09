@@ -1,4 +1,5 @@
 'use strict';
+const moment = require('moment')
 const {
   Model
 } = require('sequelize');
@@ -17,7 +18,16 @@ module.exports = (sequelize, DataTypes) => {
     author_name: DataTypes.STRING,
     body: DataTypes.STRING,
     commented_on: DataTypes.DATE,
-    article_id: DataTypes.INTEGER
+    article_id: DataTypes.INTEGER,
+    parent_comment_id: DataTypes.INTEGER,
+    commentedAgo:{
+      type: DataTypes.VIRTUAL,
+      get(){
+        let commentOn = moment(this.commented_on);
+        let now = moment();
+        return moment.duration(commentOn.diff(now)).humanize(true);
+      }
+    }
   }, {
     sequelize,
     modelName: 'Comment',

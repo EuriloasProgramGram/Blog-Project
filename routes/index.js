@@ -16,7 +16,7 @@ router.get('/article/:articleId/edit', articleController.renderEditForm)
 router.post('/article/:articleId/edit', articleController.updateArticle)
 router.get('/article/:articleId/delete', articleController.deleteArticle)
 
-router.post('./article/:articleId/comment/create', commentController.createComment)
+router.post('/article/:articleId/comment/create', commentController.createComment)
 
 
 

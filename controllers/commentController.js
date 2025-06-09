@@ -5,7 +5,7 @@ module.exports.createComment = async function (req, res) {
     await Comment.create({
         author_name: req.body.author_name,
         body: req.body.body,
-        commented_on: req.body.commented_on,
+        commented_on: new Date,
         article_id: articleId
     })
     res.redirect(`/article/${articleId}`);
